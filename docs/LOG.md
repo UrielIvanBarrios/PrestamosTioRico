@@ -5,6 +5,70 @@ Las entradas más nuevas van arriba.
 
 ---
 
+## 2026-11-02 — Sección "Nos ves en la calle" e Instagram en el footer
+
+**Pedido:** agregar una sección "Nos ves en la calle" entre la galería y el formulario (foto del colectivo con la publicidad, texto, zonas de atención y botón a Instagram), y sumar el ícono de Instagram al footer.
+
+**Cambio respecto del pedido:** la config pedía `imagen: '/presencia.webp'`, pero ese archivo no existe. En `public/` estaba `NosVesEnLaCalle.jpeg` (la foto del colectivo 7 frente a la Legislatura), así que se usó esa ruta. Si después se sube `presencia.webp`, basta con cambiar `PRESENCIA.imagen`.
+
+### Archivos creados o modificados
+
+| Archivo | Cambio |
+|---|---|
+| `src/config.js` | Nuevos `INSTAGRAM` y `PRESENCIA` (título, texto, zonas, imagen y `alt`). |
+| `src/components/Imagen.jsx` | **Nuevo.** `<img>` que muestra el placeholder punteado si el archivo no existe. Lo usan `Presencia` y las imágenes del carrusel. |
+| `src/components/Carrusel.jsx` | Las imágenes ahora usan `<Imagen>`. Los videos siguen con su propio manejo de error. |
+| `src/components/Presencia.jsx` | **Nuevo.** Título en Cinzel, foto, texto, zonas con ícono de ubicación dorado (SVG) y botón secundario "Seguinos en Instagram", que abre en pestaña nueva (`target="_blank" rel="noopener noreferrer"`). |
+| `src/App.jsx` | `<Presencia />` entre `<Galeria />` y `<FormSolicitud />`. |
+| `src/components/FormSolicitud.jsx` | Se sacó la clase `band`: ahora tiene fondo `--bg`, para que los fondos sigan alternando (Requisitos: surface, Galería: bg, Presencia: surface, Formulario: bg). |
+| `src/components/Footer.jsx` | Ícono de Instagram (SVG, dorado) con link a `INSTAGRAM`, al lado del WhatsApp. |
+| `src/App.css` | Estilos de `.presencia`: grilla con áreas. En desktop, foto a la izquierda y título y texto a la derecha. Hasta 720px, título, foto y texto uno debajo del otro. Foto con `aspect-ratio: 6 / 5`, `object-fit: cover`, bordes redondeados y borde de 1px `--gold-dark`. Estilos del ícono del footer. |
+
+### Verificación
+- `npm run lint` y `npm run build`: sin errores.
+- No se probó en el navegador.
+
+---
+
+## 2026-11-02 — Galería con pestañas en lugar de reseñas
+
+**Pedido:** reemplazar la sección de reseñas por una galería "Conocé Tío Rico" con dos pestañas ("Nuestros procesos" y "Nuestros clientes"), que aceptan imágenes y videos verticales, reutilizando el carrusel y el estilo del selector de garantía. El link del navbar pasa a "Conocé Tío Rico". Limpiar lo que quede del carrusel viejo.
+
+**Antes de empezar:** en `src/config.js` ya estaban cambiados los requisitos y en `public/` había un `favicon.png` nuevo. No se tocaron.
+
+### Archivos creados, modificados y borrados
+
+| Archivo | Cambio |
+|---|---|
+| `src/config.js` | `RESENIAS` reemplazado por `GALERIA` (pestañas con `clave`, `titulo` e `items` de tipo `imagen` o `video`). Además de los items del pedido (video y `1.webp`, que todavía no existen), se agregaron las 4 capturas movidas desde `public/resenias/`. El link del navbar ahora es "Conocé Tío Rico" y apunta a `#galeria`. |
+| `src/components/Selector.jsx` | **Nuevo.** Fila de pastillas reutilizable con dos modos: interruptor (`aria-pressed`), que usa el formulario, y pestañas (`role="tablist"`, `role="tab"`, `aria-selected`, `aria-controls`), que usa la galería. |
+| `src/components/Carrusel.jsx` | **Nuevo**, a partir del carrusel de `Resenias.jsx`. Recibe `items`, muestra imágenes (`loading="lazy"`) o videos (`autoPlay muted loop playsInline preload="metadata"` y `poster`) con marco 9:16. Si un archivo no carga muestra el placeholder punteado. Si entran todos los items, se centran y se ocultan flechas y puntitos. La cantidad visible se lee de la variable CSS `--visibles`. |
+| `src/components/Galeria.jsx` | **Nuevo.** Sección `id="galeria"` con título "Conocé Tío Rico", pestañas y el carrusel de la pestaña elegida. Al cambiar de pestaña el carrusel se monta de nuevo (`key`), así vuelve al inicio. Las pestañas sin items no se muestran. |
+| `src/components/FormSolicitud.jsx` | El selector de garantía ahora usa `<Selector>`. Se ve y funciona igual que antes. |
+| `src/App.jsx` | `Resenias` reemplazado por `Galeria`. |
+| `src/App.css` | La clase `.toggle` del formulario pasó a ser `.selector`, compartida. `.resenia` pasó a ser `.galeria-medio` (sirve para imagen, video y placeholder). Nueva regla `.is-completo` para centrar cuando entran todos los items. |
+| `src/components/Resenias.jsx` | **Borrado.** |
+| `public/resenias/` | **Borrada**, después de mover las capturas (ver abajo). |
+
+### Capturas movidas (destino confirmado por el usuario)
+| Antes | Ahora |
+|---|---|
+| `public/resenias/2.jpg` | `public/galeria/procesos/garantia-fisica-1.jpg` |
+| `public/resenias/3.jpg` | `public/galeria/procesos/garantia-fisica-2.jpg` |
+| `public/resenias/4.jpg` | `public/galeria/procesos/garantia-fisica-3.jpg` |
+| `public/resenias/1.jpeg` | `public/galeria/clientes/comprobante-pago.jpeg` |
+
+### Verificación
+- No queda ninguna referencia a `RESENIAS`, `Resenias`, `#resenas`, `.toggle` ni `.slide`.
+- `npm run lint` y `npm run build`: sin errores.
+- No se probó en el navegador.
+
+### Pendiente
+- **Datos personales en las capturas:** son públicas en la web y muestran datos de terceros. `comprobante-pago.jpeg` tiene nombres completos, CVU, CBU y CUIT de la clienta y del prestamista. `garantia-fisica-3.jpg` tiene un teléfono completo. Las tres de procesos muestran nombres de clientes en los PDF de contrato. Quedó acordado que los prestamistas las pasan con esos datos tapados; hasta entonces se publican tal cual.
+- Cargar `video.mp4`, `video-poster.jpg` y `1.webp` en `public/galeria/procesos/`, y `1.webp` en `public/galeria/clientes/`. Hasta que estén, en su lugar se ve el placeholder. Si no se van a usar, sacarlos de `GALERIA`.
+
+---
+
 ## 2026-11-02 — Estética negro y dorado
 
 **Pedido:** pasar el sitio a la estética negro y dorado del banner: paleta nueva en variables, banner a todo el ancho con el texto debajo y centrado, botones e íconos dorados, inputs oscuros, títulos en Cinzel y secciones alternadas con una línea dorada como separador.

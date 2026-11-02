@@ -8,10 +8,12 @@ export const MARCA = {
 // Número que recibe las solicitudes: código de país + área + número, sin "+", espacios ni guiones.
 export const WHATSAPP = '5491124619328'
 
+export const INSTAGRAM = 'https://instagram.com/prestamostiorico'
+
 // Enlaces del navbar: cada href apunta al id de una sección.
 export const NAV_LINKS = [
   { href: '#requisitos', texto: 'Requisitos' },
-  { href: '#resenas', texto: 'Reseñas' },
+  { href: '#galeria', texto: 'Conocé Tío Rico' },
 ]
 
 export const CTA = { href: '#solicitar', texto: 'Solicitar préstamo' }
@@ -30,8 +32,38 @@ export const REQUISITOS = {
   fisica: ['DNI vigente', 'Garantía física que cubra el valor del credito'],
 }
 
-// Capturas de reseñas dentro de /public (ej: '/resenias/1.jpg'). Si queda vacío se muestran 3 placeholders.
-export const RESENIAS = ['/resenias/1.jpeg','/resenias/2.jpg','/resenias/3.jpg','/resenias/4.jpg']
+// Sección "Nos ves en la calle". Imagen dentro de /public; si no existe se muestra un placeholder.
+export const PRESENCIA = {
+  titulo: 'Nos ves en la calle',
+  texto: 'Formamos parte de la calle todos los días. Si viste nuestro cartel en el colectivo, ya nos conocés.',
+  zonas: 'Atendemos en CABA, AMBA, Mar del plata y Córdoba',
+  imagen: '/NosVesEnLaCalle.jpeg',
+  alt: 'Colectivo con la publicidad de Préstamos Tío Rico frente a la Legislatura porteña',
+}
+
+// Galería con pestañas. tipo: 'imagen' | 'video'. Archivos dentro de /public.
+// Si un archivo todavía no existe se muestra un placeholder. Una pestaña sin items no se muestra.
+export const GALERIA = [
+  {
+    clave: 'procesos',
+    titulo: 'Nuestros procesos',
+    items: [
+      { tipo: 'video', src: '/galeria/procesos/garantia-video.mp4', poster: '/galeria/procesos/video-poster.jpg', alt: 'Cómo es el proceso de un préstamo' },
+      { tipo: 'imagen', src: '/galeria/procesos/comprobante-pago.jpeg', alt: 'Préstamo con garantía física' },
+      { tipo: 'imagen', src: '/galeria/procesos/garantia-fisica-1.jpg', alt: 'Chat de un préstamo con garantía física: contrato y préstamo pre aprobado' },
+      { tipo: 'imagen', src: '/galeria/procesos/garantia-fisica-2.jpg', alt: 'Chat de un préstamo con garantía física: contrato y préstamo pre aprobado' },
+      { tipo: 'imagen', src: '/galeria/procesos/garantia-fisica-3.jpg', alt: 'Chat de un préstamo con garantía física: contrato firmado y préstamo pre aprobado' },
+    ],
+  },
+  {
+    clave: 'clientes',
+    titulo: 'Nuestros clientes',
+    items: [
+      { tipo: 'imagen', src: '/galeria/clientes/prestamo-tv.jpeg', alt: 'Mensaje de un cliente' },
+      { tipo: 'imagen', src: '/galeria/clientes/prestamo-consola.jpeg', alt: 'Mensaje de un cliente' },
+    ],
+  },
+]
 
 // Tipos de garantía que se eligen en el formulario. La clave coincide con la de CAMPOS.
 export const GARANTIAS = [

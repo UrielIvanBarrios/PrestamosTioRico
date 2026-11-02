@@ -2,7 +2,8 @@ import './App.css'
 import Navbar from './components/Navbar'
 import Banner from './components/Banner'
 import Requisitos from './components/Requisitos'
-import Resenias from './components/Resenias'
+import Galeria from './components/Galeria'
+import Presencia from './components/Presencia'
 import FormSolicitud from './components/FormSolicitud'
 import Footer from './components/Footer'
 
@@ -13,7 +14,8 @@ function App() {
       <main>
         <Banner />
         <Requisitos />
-        <Resenias />
+        <Galeria />
+        <Presencia />
         <FormSolicitud />
       </main>
       <Footer />

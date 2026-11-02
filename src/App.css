@@ -49,7 +49,14 @@
 .req-card ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; color: var(--ink-2); line-height: 1.5; }
 .req-card li::marker { color: var(--gold); }
 
-/* Carrusel de reseñas */
+/* Selector de pastillas: garantía del formulario y pestañas de la galería */
+.selector { display: flex; flex-wrap: wrap; gap: 12px; }
+.selector button { padding: 14px 22px; border-radius: 999px; font-weight: 700; font-size: 15px; cursor: pointer; background: var(--card); color: var(--ink); border: 1.5px solid var(--line); }
+.selector button:hover { border-color: var(--gold-dark); }
+.selector button[aria-pressed="true"], .selector button[aria-selected="true"] { background: var(--gold); color: var(--on-gold); border-color: var(--gold); }
+
+/* Galería: carrusel de imágenes y videos verticales */
+.carrusel { display: flex; flex-direction: column; gap: 28px; }
 .carousel { display: flex; align-items: center; gap: 16px; }
 .carousel-btn { flex: 0 0 auto; width: 48px; height: 48px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .carousel-btn:hover:not(:disabled) { border-color: var(--gold); color: var(--gold); }
@@ -58,19 +65,26 @@
 .carousel-track { --visibles: 3; --sep: 20px; flex: 1 1 auto; min-width: 0; display: flex; gap: var(--sep); overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; }
 .carousel-track::-webkit-scrollbar { display: none; }
 .carousel-item { flex: 0 0 calc((100% - (var(--visibles) - 1) * var(--sep)) / var(--visibles)); scroll-snap-align: start; display: flex; justify-content: center; }
-.resenia { width: 100%; max-width: 320px; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 16px; display: block; }
+/* Si entran todos los items, se centran (no hay flechas ni puntitos). */
+.carousel.is-completo .carousel-track { justify-content: center; }
+.carousel.is-completo .carousel-item { flex-basis: min(320px, calc((100% - (var(--visibles) - 1) * var(--sep)) / var(--visibles))); }
+.galeria-medio { width: 100%; max-width: 320px; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 16px; display: block; background: var(--card); }
 .dots { display: flex; justify-content: center; gap: 8px; }
 .dot { width: 8px; height: 8px; padding: 0; border: none; border-radius: 999px; background: var(--line-strong); cursor: pointer; transition: width .2s; }
 .dot.active { width: 24px; background: var(--gold); }
+
+/* Nos ves en la calle: en desktop foto a la izquierda y título + texto a la derecha */
+.presencia { display: grid; grid-template-columns: 1fr 1fr; grid-template-areas: "foto titulo" "foto texto"; grid-template-rows: auto 1fr; column-gap: 56px; row-gap: 20px; align-items: start; }
+.presencia-titulo { grid-area: titulo; align-self: end; }
+.presencia-foto { grid-area: foto; width: 100%; aspect-ratio: 6 / 5; object-fit: cover; border-radius: 20px; border: 1px solid var(--gold-dark); display: block; }
+.presencia-texto { grid-area: texto; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+.presencia-zonas { margin: 0; display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--ink); }
+.presencia-zonas svg { color: var(--gold); flex: 0 0 auto; }
 
 /* Formulario */
 .form-wrap { max-width: 760px; }
 .form-wrap fieldset { border: none; margin: 0; padding: 0; }
 .form-wrap legend { font-weight: 700; font-size: 15px; margin-bottom: 12px; padding: 0; }
-.toggle { display: flex; flex-wrap: wrap; gap: 12px; }
-.toggle button { padding: 14px 22px; border-radius: 999px; font-weight: 700; font-size: 15px; cursor: pointer; background: var(--card); color: var(--ink); border: 1.5px solid var(--line); }
-.toggle button:hover { border-color: var(--gold-dark); }
-.toggle button[aria-pressed="true"] { background: var(--gold); color: var(--on-gold); border-color: var(--gold); }
 .form-solicitud { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
 .form-solicitud label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 14px; }
 .form-solicitud input, .form-solicitud select, .form-solicitud textarea { padding: 13px 14px; border: 1.5px solid var(--line); border-radius: 10px; background: var(--card); color: var(--ink); }
@@ -93,6 +107,9 @@
 .footer strong { color: var(--gold); }
 .footer a { color: var(--muted); }
 .footer a:hover { color: var(--gold); }
+.footer .container { align-items: center; }
+.footer-links { display: flex; align-items: center; gap: 20px; }
+.footer-icono { display: flex; color: var(--gold); }
 
 @media (max-width: 960px) {
   .carousel-track { --visibles: 2; }
@@ -104,6 +121,7 @@
 }
 
 @media (max-width: 720px) {
+  .presencia { grid-template-columns: 1fr; grid-template-areas: "titulo" "foto" "texto"; grid-template-rows: auto; }
   .hero-text { padding-top: 36px; padding-bottom: 48px; }
   .navbar-toggle { display: flex; }
   .navbar-links { display: none; flex-basis: 100%; flex-direction: column; align-items: stretch; gap: 4px; padding-top: 8px; border-top: 1px solid var(--line); }

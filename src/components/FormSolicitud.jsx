@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { CAMPOS, GARANTIAS, MARCA } from '../config'
 import { armarMensaje, abrirWhatsApp } from '../utils/whatsapp'
 import Campo from './Campo'
+import Selector from './Selector'
 import FormRecibo from './FormRecibo'
 import FormGarantiaFisica from './FormGarantiaFisica'
 
@@ -15,7 +16,7 @@ function FormSolicitud() {
   }
 
   return (
-    <section id="solicitar" className="section band">
+    <section id="solicitar" className="section">
       <div className="container form-wrap">
         <div>
           <h2>Solicitá tu préstamo</h2>
@@ -24,13 +25,7 @@ function FormSolicitud() {
 
         <fieldset>
           <legend>¿Qué tipo de garantía tenés?</legend>
-          <div className="toggle">
-            {GARANTIAS.map((g) => (
-              <button key={g.clave} type="button" aria-pressed={garantia === g.clave} onClick={() => setGarantia(g.clave)}>
-                {g.texto}
-              </button>
-            ))}
-          </div>
+          <Selector opciones={GARANTIAS} valor={garantia} onCambiar={setGarantia} />
         </fieldset>
 
         <form className="form-solicitud" onSubmit={enviar}>
