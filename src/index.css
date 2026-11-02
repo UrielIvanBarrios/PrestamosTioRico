@@ -1,0 +1,50 @@
+/* Paleta negro y dorado, tomada del banner y el logo. Ningún componente usa colores fijos: todo pasa por estas variables. */
+:root {
+  color-scheme: dark;
+
+  /* Fondos */
+  --bg: #0B0B0C;
+  --surface: #141416;
+  --card: #1C1C1F;
+
+  /* Texto */
+  --ink: #F3EEE3;
+  --ink-2: #D9D2C3;
+  --muted: #ABA498;
+  --faint: #8E887C;
+
+  /* Líneas */
+  --line: #3A3731;
+  --line-strong: #4F4A40;
+
+  /* Dorado */
+  --gold: #C9A24A;
+  --gold-light: #E3C27A;
+  --gold-dark: #8C6B26;
+  --gold-soft: rgba(201, 162, 74, .12);
+  --on-gold: #141006;
+
+  /* Placeholders de imágenes */
+  --placeholder: #17171A;
+  --placeholder-border: #5A5245;
+
+  --font-titulos: Cinzel, Georgia, serif;
+  --font-texto: Manrope, system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: var(--font-texto); color: var(--ink); background: var(--bg); }
+h1, h2 { font-family: var(--font-titulos); }
+a { color: var(--gold); }
+input, select, textarea, button { font: inherit; }
+img { max-width: 100%; }
+
+.container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+
+/* Botones */
+.btn { display: inline-block; text-decoration: none; border-radius: 999px; font-weight: 700; padding: 16px 28px; font-size: 16px; cursor: pointer; transition: background .2s, border-color .2s; }
+.btn-primary { background: var(--gold); color: var(--on-gold); border: none; }
+.btn-primary:hover { background: var(--gold-light); }
+.btn-outline { color: var(--ink); border: 1.5px solid var(--gold-dark); background: transparent; }
+.btn-outline:hover { border-color: var(--gold); }

@@ -1,0 +1,64 @@
+// Datos de la marca: reemplazar cuando pasen el material.
+export const MARCA = {
+  nombre: 'Tio Rico',
+  // Ruta al logo dentro de /public (ej: '/logo.svg'). Mientras sea null se muestra un placeholder.
+  logo: '/Logo.jpeg',
+}
+
+// Número que recibe las solicitudes: código de país + área + número, sin "+", espacios ni guiones.
+export const WHATSAPP = '5491124619328'
+
+// Enlaces del navbar: cada href apunta al id de una sección.
+export const NAV_LINKS = [
+  { href: '#requisitos', texto: 'Requisitos' },
+  { href: '#resenas', texto: 'Reseñas' },
+]
+
+export const CTA = { href: '#solicitar', texto: 'Solicitar préstamo' }
+
+export const BANNER = {
+  eyebrow: 'Préstamos personales',
+  titulo: 'Dinero cuando lo necesitás, sin vueltas.',
+  texto: 'Con recibo de sueldo o con garantía. Dejanos tus datos y te contactamos por WhatsApp.',
+  // Ruta a la imagen dentro de /public. Mientras sea null se muestra un placeholder.
+  imagen: '/Banner.jpeg',
+}
+
+// Requisitos de cada tipo de préstamo (a confirmar con ellos).
+export const REQUISITOS = {
+  recibo: ['DNI vigente', 'No estar en el veraz', 'Servicio de a tu nombre'],
+  fisica: ['DNI vigente', 'Garantía física que cubra el valor del credito'],
+}
+
+// Capturas de reseñas dentro de /public (ej: '/resenias/1.jpg'). Si queda vacío se muestran 3 placeholders.
+export const RESENIAS = ['/resenias/1.jpeg','/resenias/2.jpg','/resenias/3.jpg','/resenias/4.jpg']
+
+// Tipos de garantía que se eligen en el formulario. La clave coincide con la de CAMPOS.
+export const GARANTIAS = [
+  { clave: 'recibo', texto: 'Recibo de sueldo' },
+  { clave: 'fisica', texto: 'Garantía física' },
+]
+
+// Campos de cada formulario (propuesta, confirmar con ellos).
+// type: 'text' | 'tel' | 'select' | 'textarea' | 'radio'. full: ocupa todo el ancho.
+// icono y etiquetaMensaje: cómo aparece el campo en el mensaje de WhatsApp (sin etiquetaMensaje se usa label).
+// finales: van después de los campos de la garantía elegida, en los dos formularios.
+export const CAMPOS = {
+  comunes: [
+    { name: 'nombre', label: 'Nombre y apellido', required: true, icono: '👤', etiquetaMensaje: 'Nombre' },
+    { name: 'dni', label: 'DNI', inputMode: 'numeric', required: true, icono: '🪪' },
+    { name: 'telefono', label: 'Teléfono (WhatsApp)', type: 'tel', required: true, icono: '📱', etiquetaMensaje: 'Teléfono' },
+    { name: 'monto', label: 'Monto que necesitás', inputMode: 'numeric', required: true, icono: '💰', etiquetaMensaje: 'Monto' },
+  ],
+  recibo: [
+    { name: 'empleador', label: 'Empleador', required: true, icono: '🏢' },
+    { name: 'antiguedad', label: 'Antigüedad laboral', required: true, icono: '⏳', etiquetaMensaje: 'Antigüedad' },
+    { name: 'ingreso', label: 'Ingreso neto mensual', inputMode: 'numeric', required: true, icono: '💵', etiquetaMensaje: 'Ingreso neto' },
+  ],
+  fisica: [
+    { name: 'descripcionBien', label: '¿Qué tenés como garantía?', type: 'textarea', full: true, required: true, icono: '🏠', etiquetaMensaje: 'Garantía' },
+  ],
+  finales: [
+    { name: 'veraz', label: '¿Tenés deudas atrasadas informadas en el Veraz?', type: 'radio', opciones: ['Sí', 'No'], full: true, required: true, icono: '📊', etiquetaMensaje: 'Deudas en Veraz' },
+  ],
+}

@@ -1,0 +1,113 @@
+/* Navbar */
+.navbar { position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 1px solid var(--line); }
+.navbar-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding-top: 16px; padding-bottom: 16px; }
+
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
+.brand-logo { width: 44px; height: 44px; border-radius: 999px; object-fit: cover; }
+.brand-logo--placeholder { border: 2px dashed var(--placeholder-border); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: var(--faint); }
+.brand-name { font-size: 18px; font-weight: 800; }
+
+.navbar-links { display: flex; align-items: center; gap: 24px; font-size: 15px; font-weight: 600; }
+.navbar-links a { text-decoration: none; color: var(--ink-2); }
+.navbar-links a:hover { color: var(--gold); }
+.navbar-links .btn { padding: 12px 20px; font-size: 15px; color: var(--on-gold); }
+.navbar-links .btn:hover { color: var(--on-gold); }
+
+.navbar-toggle { display: none; width: 44px; height: 44px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; align-items: center; justify-content: center; }
+
+/* Placeholders de imágenes */
+.placeholder {
+  border: 2px dashed var(--placeholder-border); background: var(--placeholder);
+  border-radius: 16px; color: var(--faint);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center; padding: 16px;
+}
+.placeholder strong { font-size: 17px; }
+.placeholder small { font-size: 13px; }
+
+/* Banner: imagen a todo el ancho y, debajo, el texto centrado */
+.hero { background: var(--bg); }
+.hero-banner { width: 100%; aspect-ratio: 1600 / 666; object-fit: cover; display: block; }
+.hero-banner.placeholder { border-radius: 0; border-width: 0 0 2px; }
+.hero-text { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px; padding-top: 48px; padding-bottom: 64px; }
+.eyebrow { font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
+.hero h1 { margin: 0; font-size: clamp(32px, 5vw, 50px); line-height: 1.12; font-weight: 700; max-width: 22ch; }
+.lead { margin: 0; font-size: 18px; line-height: 1.55; color: var(--muted); max-width: 34rem; }
+.hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 8px; }
+
+/* Secciones: alternan --bg y --surface, separadas por una línea dorada fina */
+.section { scroll-margin-top: 77px; background: var(--bg); border-top: 1px solid var(--gold-dark); }
+.band { background: var(--surface); }
+.section > .container { padding-top: 64px; padding-bottom: 64px; display: flex; flex-direction: column; gap: 28px; }
+.section h2 { margin: 0; font-size: clamp(26px, 4vw, 34px); font-weight: 700; }
+.section-sub { margin: 8px 0 0; color: var(--muted); }
+
+/* Requisitos */
+.req-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+.req-card { border: 1px solid var(--line); border-radius: 16px; padding: 28px; background: var(--card); display: flex; flex-direction: column; gap: 16px; }
+.req-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--gold-soft); color: var(--gold); display: flex; align-items: center; justify-content: center; }
+.req-card h3 { margin: 0; font-size: 22px; font-weight: 800; }
+.req-card ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; color: var(--ink-2); line-height: 1.5; }
+.req-card li::marker { color: var(--gold); }
+
+/* Carrusel de reseñas */
+.carousel { display: flex; align-items: center; gap: 16px; }
+.carousel-btn { flex: 0 0 auto; width: 48px; height: 48px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.carousel-btn:hover:not(:disabled) { border-color: var(--gold); color: var(--gold); }
+.carousel-btn:disabled { opacity: .35; cursor: default; }
+/* Pista con scroll-snap: en celular se desliza con el dedo. Cantidad visible: 3 desktop, 2 tablet, 1 celular. */
+.carousel-track { --visibles: 3; --sep: 20px; flex: 1 1 auto; min-width: 0; display: flex; gap: var(--sep); overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; }
+.carousel-track::-webkit-scrollbar { display: none; }
+.carousel-item { flex: 0 0 calc((100% - (var(--visibles) - 1) * var(--sep)) / var(--visibles)); scroll-snap-align: start; display: flex; justify-content: center; }
+.resenia { width: 100%; max-width: 320px; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 16px; display: block; }
+.dots { display: flex; justify-content: center; gap: 8px; }
+.dot { width: 8px; height: 8px; padding: 0; border: none; border-radius: 999px; background: var(--line-strong); cursor: pointer; transition: width .2s; }
+.dot.active { width: 24px; background: var(--gold); }
+
+/* Formulario */
+.form-wrap { max-width: 760px; }
+.form-wrap fieldset { border: none; margin: 0; padding: 0; }
+.form-wrap legend { font-weight: 700; font-size: 15px; margin-bottom: 12px; padding: 0; }
+.toggle { display: flex; flex-wrap: wrap; gap: 12px; }
+.toggle button { padding: 14px 22px; border-radius: 999px; font-weight: 700; font-size: 15px; cursor: pointer; background: var(--card); color: var(--ink); border: 1.5px solid var(--line); }
+.toggle button:hover { border-color: var(--gold-dark); }
+.toggle button[aria-pressed="true"] { background: var(--gold); color: var(--on-gold); border-color: var(--gold); }
+.form-solicitud { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+.form-solicitud label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 14px; }
+.form-solicitud input, .form-solicitud select, .form-solicitud textarea { padding: 13px 14px; border: 1.5px solid var(--line); border-radius: 10px; background: var(--card); color: var(--ink); }
+.form-solicitud input:focus, .form-solicitud select:focus, .form-solicitud textarea:focus { outline: 2px solid var(--gold); outline-offset: 1px; border-color: var(--gold); }
+.form-solicitud textarea { resize: vertical; }
+.form-solicitud .radio-group { border: none; margin: 0; padding: 0; }
+.form-solicitud .radio-group legend { font-weight: 600; font-size: 14px; margin-bottom: 10px; padding: 0; }
+.radio-opciones { display: flex; flex-wrap: wrap; gap: 12px; }
+.form-solicitud .radio { flex-direction: row; align-items: center; gap: 10px; padding: 12px 20px; border: 1.5px solid var(--line); border-radius: 999px; background: var(--card); cursor: pointer; font-size: 15px; }
+.form-solicitud .radio:has(input:checked) { border-color: var(--gold); background: var(--gold-soft); }
+.form-solicitud .radio input { margin: 0; padding: 0; width: 18px; height: 18px; accent-color: var(--gold); }
+.full { grid-column: 1 / -1; }
+.submit { grid-column: 1 / -1; margin-top: 8px; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 17px; font-weight: 800; }
+.disclaimer { margin: 0; font-size: 13px; color: var(--faint); line-height: 1.5; }
+.disclaimer strong { color: var(--ink-2); }
+
+/* Footer */
+.footer { background: var(--bg); color: var(--muted); border-top: 1px solid var(--gold-dark); }
+.footer .container { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-top: 28px; padding-bottom: 28px; font-size: 14px; }
+.footer strong { color: var(--gold); }
+.footer a { color: var(--muted); }
+.footer a:hover { color: var(--gold); }
+
+@media (max-width: 960px) {
+  .carousel-track { --visibles: 2; }
+}
+
+@media (max-width: 600px) {
+  .carousel-track { --visibles: 1; }
+  .carousel-btn { display: none; }
+}
+
+@media (max-width: 720px) {
+  .hero-text { padding-top: 36px; padding-bottom: 48px; }
+  .navbar-toggle { display: flex; }
+  .navbar-links { display: none; flex-basis: 100%; flex-direction: column; align-items: stretch; gap: 4px; padding-top: 8px; border-top: 1px solid var(--line); }
+  .navbar-links.is-open { display: flex; }
+  .navbar-links a { padding: 12px 4px; }
+  .navbar-links .btn { margin-top: 8px; text-align: center; padding: 14px 20px; }
+}
