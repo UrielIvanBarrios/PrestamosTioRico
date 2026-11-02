@@ -5,6 +5,69 @@ Las entradas más nuevas van arriba.
 
 ---
 
+## 2026-11-02 — Preparación para producción (prestamostiorico.com)
+
+**Pedido:** dejar el sitio listo para producción en `https://prestamostiorico.com`: Open Graph con el dominio real, imagen para compartir de 1200 × 630, Cloudflare solo con el dominio, imágenes en WebP con nombres en minúscula, y verificación final antes del commit.
+
+**Antes de empezar:** el proyecto ya estaba en git (rama `main`, sin cambios pendientes). En `src/config.js` ya estaban cambiados `PRESENCIA` (texto y zonas) y `GALERIA` (video, capturas reubicadas y nuevas de clientes). No se tocaron, salvo las rutas.
+
+### Archivos creados, modificados y borrados
+
+| Archivo | Cambio |
+|---|---|
+| `index.html` | `og:image` y `og:url` apuntan a `https://prestamostiorico.com`. Se agregaron `og:image:width` (1200), `og:image:height` (630) y `og:image:alt`. Se sacó el comentario "Favicon: reemplazar…", que ya estaba hecho. `favicon.png` existe. |
+| `public/og-image.jpg` | **Nuevo.** 1200 × 630, 42 KB, recortado de `Banner.jpeg` (escalado a 630 de alto y recortados los costados). Logo centrado, sin deformar. |
+| `public/apple-touch-icon.png` | **Nuevo.** 180 × 180, a partir del logo. `index.html` ya lo referenciaba pero el archivo no existía. |
+| `wrangler.jsonc` | `"workers_dev": false` y `"preview_urls": false`. |
+| `src/config.js` | Rutas actualizadas a `.webp`. Se sacó el `poster` del video (`video-poster.jpg`), porque nunca existió y en producción daba 404. |
+| `public/*.webp` | **Nuevos**, a calidad 80 (tabla abajo). |
+| Originales `.jpeg` / `.jpg` | **Borrados**, después de verificar que no quedaba ninguna referencia (solo las menciones históricas de este log). |
+
+Herramienta: `npx --yes sharp-cli@5`, sin agregarla a las dependencias (`package.json` y `package-lock.json` sin cambios).
+
+### Conversión a WebP
+| Antes | Después | Peso |
+|---|---|---|
+| `Banner.jpeg` | `banner.webp` | 61 KB → 37 KB |
+| `Logo.jpeg` (1254 px) | `logo.webp` (160 px: se muestra a 44 px) | 138 KB → 5,5 KB |
+| `NosVesEnLaCalle.jpeg` | `nos-ves-en-la-calle.webp` | 355 KB → 202 KB |
+| `galeria/procesos/comprobante-pago.jpeg` | `.webp` | 225 KB → 130 KB |
+| `galeria/procesos/garantia-fisica-1.jpg` | `.webp` | 199 KB → 111 KB |
+| `galeria/procesos/garantia-fisica-2.jpg` | `.webp` | 212 KB → 119 KB |
+| `galeria/procesos/garantia-fisica-3.jpg` | `.webp` | 205 KB → 115 KB |
+| `galeria/clientes/prestamo-tv.jpeg` | `.webp` | 164 KB → 123 KB |
+| `galeria/clientes/prestamo-consola.jpeg` | `.webp` | 242 KB → 175 KB |
+
+`favicon.png`, `og-image.jpg` y `garantia-video.mp4` quedan como están.
+
+### Verificación
+- Todas las rutas a `/…` en `src/` e `index.html` apuntan a archivos que existen en `public/`.
+- No queda `TU-DOMINIO` en el proyecto.
+- No quedan textos de placeholder entre corchetes en `src/` ni en `index.html`. Solo hay en `docs/referencia.html`, el diseño de referencia, que no se publica.
+- `npm run lint` y `npm run build`: sin errores.
+- No se probó en el navegador ni se probó la vista previa al compartir el link.
+
+### Achique de las capturas de la galería (pedido en la misma sesión)
+Las capturas medían ~900 × 1600 y se muestran a 320 px de ancho como máximo. Se regeneraron a **640 px de ancho** (el doble, para pantallas de alta densidad), calidad 80, a partir de los JPG originales que quedaban en el último commit, para no recomprimir el WebP.
+
+| Captura | WebP 900 px | WebP 640 px |
+|---|---|---|
+| `procesos/comprobante-pago.webp` | 130 KB | 90 KB |
+| `procesos/garantia-fisica-1.webp` | 111 KB | 75 KB |
+| `procesos/garantia-fisica-2.webp` | 119 KB | 82 KB |
+| `procesos/garantia-fisica-3.webp` | 115 KB | 80 KB |
+| `clientes/prestamo-tv.webp` | 123 KB | 77 KB |
+| `clientes/prestamo-consola.webp` | 175 KB | 117 KB |
+| **Total** | **773 KB** | **521 KB** (los JPG originales sumaban 1247 KB) |
+
+El texto de los chats se sigue leyendo bien (revisado en `garantia-fisica-1.webp`). `npm run lint` y `npm run build`: sin errores.
+
+### Pendiente
+- Sigue pendiente tapar los datos personales en las capturas (ver la sesión de la galería).
+- El archivo más pesado del sitio ahora es `garantia-video.mp4` (884 KB). Como tiene `autoPlay`, el navegador lo descarga al cargar la página aunque tenga `preload="metadata"`. Si pesa demasiado, se puede hacer que arranque recién cuando la galería aparece en pantalla.
+
+---
+
 ## 2026-11-02 — Sección "Nos ves en la calle" e Instagram en el footer
 
 **Pedido:** agregar una sección "Nos ves en la calle" entre la galería y el formulario (foto del colectivo con la publicidad, texto, zonas de atención y botón a Instagram), y sumar el ícono de Instagram al footer.

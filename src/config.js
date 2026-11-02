@@ -2,7 +2,7 @@
 export const MARCA = {
   nombre: 'Tio Rico',
   // Ruta al logo dentro de /public (ej: '/logo.svg'). Mientras sea null se muestra un placeholder.
-  logo: '/Logo.jpeg',
+  logo: '/logo.webp',
 }
 
 // Número que recibe las solicitudes: código de país + área + número, sin "+", espacios ni guiones.
@@ -23,7 +23,7 @@ export const BANNER = {
   titulo: 'Dinero cuando lo necesitás, sin vueltas.',
   texto: 'Con recibo de sueldo o con garantía. Dejanos tus datos y te contactamos por WhatsApp.',
   // Ruta a la imagen dentro de /public. Mientras sea null se muestra un placeholder.
-  imagen: '/Banner.jpeg',
+  imagen: '/banner.webp',
 }
 
 // Requisitos de cada tipo de préstamo (a confirmar con ellos).
@@ -37,7 +37,7 @@ export const PRESENCIA = {
   titulo: 'Nos ves en la calle',
   texto: 'Formamos parte de la calle todos los días. Si viste nuestro cartel en el colectivo, ya nos conocés.',
   zonas: 'Atendemos en CABA, AMBA, Mar del plata y Córdoba',
-  imagen: '/NosVesEnLaCalle.jpeg',
+  imagen: '/nos-ves-en-la-calle.webp',
   alt: 'Colectivo con la publicidad de Préstamos Tío Rico frente a la Legislatura porteña',
 }
 
@@ -48,19 +48,19 @@ export const GALERIA = [
     clave: 'procesos',
     titulo: 'Nuestros procesos',
     items: [
-      { tipo: 'video', src: '/galeria/procesos/garantia-video.mp4', poster: '/galeria/procesos/video-poster.jpg', alt: 'Cómo es el proceso de un préstamo' },
-      { tipo: 'imagen', src: '/galeria/procesos/comprobante-pago.jpeg', alt: 'Préstamo con garantía física' },
-      { tipo: 'imagen', src: '/galeria/procesos/garantia-fisica-1.jpg', alt: 'Chat de un préstamo con garantía física: contrato y préstamo pre aprobado' },
-      { tipo: 'imagen', src: '/galeria/procesos/garantia-fisica-2.jpg', alt: 'Chat de un préstamo con garantía física: contrato y préstamo pre aprobado' },
-      { tipo: 'imagen', src: '/galeria/procesos/garantia-fisica-3.jpg', alt: 'Chat de un préstamo con garantía física: contrato firmado y préstamo pre aprobado' },
+      { tipo: 'video', src: '/galeria/procesos/garantia-video.mp4', alt: 'Cómo es el proceso de un préstamo' },
+      { tipo: 'imagen', src: '/galeria/procesos/comprobante-pago.webp', alt: 'Préstamo con garantía física' },
+      { tipo: 'imagen', src: '/galeria/procesos/garantia-fisica-1.webp', alt: 'Chat de un préstamo con garantía física: contrato y préstamo pre aprobado' },
+      { tipo: 'imagen', src: '/galeria/procesos/garantia-fisica-2.webp', alt: 'Chat de un préstamo con garantía física: contrato y préstamo pre aprobado' },
+      { tipo: 'imagen', src: '/galeria/procesos/garantia-fisica-3.webp', alt: 'Chat de un préstamo con garantía física: contrato firmado y préstamo pre aprobado' },
     ],
   },
   {
     clave: 'clientes',
     titulo: 'Nuestros clientes',
     items: [
-      { tipo: 'imagen', src: '/galeria/clientes/prestamo-tv.jpeg', alt: 'Mensaje de un cliente' },
-      { tipo: 'imagen', src: '/galeria/clientes/prestamo-consola.jpeg', alt: 'Mensaje de un cliente' },
+      { tipo: 'imagen', src: '/galeria/clientes/prestamo-tv.webp', alt: 'Mensaje de un cliente' },
+      { tipo: 'imagen', src: '/galeria/clientes/prestamo-consola.webp', alt: 'Mensaje de un cliente' },
     ],
   },
 ]
