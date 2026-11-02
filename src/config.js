@@ -8,7 +8,7 @@ export const MARCA = {
 // Número que recibe las solicitudes: código de país + área + número, sin "+", espacios ni guiones.
 export const WHATSAPP = '5491124619328'
 
-export const INSTAGRAM = 'https://instagram.com/prestamostiorico'
+export const INSTAGRAM = 'https://www.instagram.com/tioricoprestamos/'
 
 // Enlaces del navbar: cada href apunta al id de una sección.
 export const NAV_LINKS = [

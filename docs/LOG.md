@@ -5,6 +5,21 @@ Las entradas más nuevas van arriba.
 
 ---
 
+## 2026-11-02 — Cambio de cuenta de Instagram
+
+**Pedido:** cambiar el Instagram del botón por `https://www.instagram.com/tioricoprestamos/`.
+
+| Archivo | Cambio |
+|---|---|
+| `src/config.js` | `INSTAGRAM` pasó de `https://instagram.com/prestamostiorico` a `https://www.instagram.com/tioricoprestamos/`. Lo usan el botón "Seguinos en Instagram" de "Nos ves en la calle" y el ícono del footer, así que cambian los dos. |
+
+**Ojo:** la foto del colectivo (`nos-ves-en-la-calle.webp`) muestra en el cartel la cuenta vieja, "Prestamostiorico".
+
+### Verificación
+- `npm run lint` y `npm run build`: sin errores.
+
+---
+
 ## 2026-11-02 — Preparación para producción (prestamostiorico.com)
 
 **Pedido:** dejar el sitio listo para producción en `https://prestamostiorico.com`: Open Graph con el dominio real, imagen para compartir de 1200 × 630, Cloudflare solo con el dominio, imágenes en WebP con nombres en minúscula, y verificación final antes del commit.
